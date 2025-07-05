@@ -1,4 +1,4 @@
-package com.rental.carmanager;
+package com.rental.rentalmanager;
 
 public interface Rentable {
 	boolean isAvailable();

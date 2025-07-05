@@ -1,1 +1,6 @@
-carID,make,model,year,type,availability
+1,Mercedes,C-klass,2020,true
+2,Peugeot,208,2017,true
+3,Citroen,C-5,2005,true
+4,VW,Passat,2008,true
+5,Man,1000,true
+6,Daf,2000,false

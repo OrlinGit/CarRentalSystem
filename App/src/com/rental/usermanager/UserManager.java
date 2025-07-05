@@ -1,8 +1,6 @@
 package com.rental.usermanager;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,14 +8,23 @@ import java.util.UUID;
 
 public class UserManager {
 	private final Map<UUID, User> users = new HashMap<>();
-	private final Path pathToUsers = Path.of("src", "com.rental", "datarepository", "users");
+	private final Path pathToUsers = Path.of("App", "src", "com", "rental", "datarepository", "users.csv");
 	private final BufferedWriter writer;
+	private final BufferedReader reader;
+
+	{
+		try {
+			reader = new BufferedReader(new FileReader(String.valueOf(pathToUsers)));
+		} catch (FileNotFoundException e) {
+			throw new RuntimeException("File is not available to read!");
+		}
+	}
 
 	{
 		try {
 			writer = new BufferedWriter(new FileWriter(String.valueOf(pathToUsers)));
 		} catch (IOException e) {
-			throw new RuntimeException("File is not available!");
+			throw new RuntimeException("File is not available to write!");
 		}
 	}
 
@@ -42,4 +49,19 @@ public class UserManager {
 		writer.close();
 	}
 
+	public HashMap<UUID, User> getRegisteredUsers() throws IOException {
+		HashMap<UUID, User> registeredUSers = new HashMap<>();
+		String line = reader.readLine();
+		while (line != null){
+			String[] data = line.split(",");
+			UUID id = UUID.fromString(data[0]);
+			String name = data[1];
+			String password = data[2];
+			User currentUser = new User(name, password);
+			registeredUSers.put(id, currentUser);
+			line = reader.readLine();
+		}
+		reader.close();
+		return registeredUSers;
+	}
 }
