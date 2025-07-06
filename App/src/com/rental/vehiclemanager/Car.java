@@ -1,5 +1,7 @@
 package com.rental.vehiclemanager;
-
+/*
+This is a Vehicle subclass that creates the needed attributes of a Car object.
+ */
 public class Car extends Vehicle {
 	private String model;
 	private int year;
@@ -27,6 +29,10 @@ public class Car extends Vehicle {
 		this.year = year;
 	}
 
+	/*
+	This function generates String with coma separated information that is valid to write to a csv file.
+	It overrides the parent class functionality to tailor it to the Car class.
+	 */
 	@Override
 	public String toFile() {
 		return String.join(",",
@@ -37,6 +43,9 @@ public class Car extends Vehicle {
 				String.valueOf(this.isAvailable()));
 	}
 
+	/*
+	This class gets a String from csv file and turns the information to a Car class object.
+	 */
 	public Car fromFile(Car car, String[] data){
 		if(data.length != 5){
 			System.out.println("Data size not correct!");

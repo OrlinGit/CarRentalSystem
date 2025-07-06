@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+/*
+This class is responsible for the management of all functions related to the users.
+ */
 public class UserManager {
 	private final Map<UUID, User> users = new HashMap<>();
 	private final Path pathToUsers = Path.of("App", "src", "com", "rental", "datarepository", "users.csv");
@@ -22,7 +25,7 @@ public class UserManager {
 
 	{
 		try {
-			writer = new BufferedWriter(new FileWriter(String.valueOf(pathToUsers)));
+			writer = new BufferedWriter(new FileWriter(String.valueOf(pathToUsers), true));
 		} catch (IOException e) {
 			throw new RuntimeException("File is not available to write!");
 		}
@@ -47,6 +50,9 @@ public class UserManager {
 		return null;
 	}
 
+	/*
+	This function is used to print the names of all registered users hiding the id and passwords.
+	 */
 	public void printUsers(){
 		for(Map.Entry<UUID, User> user : users.entrySet()){
 			System.out.println("User: " + user.getValue().getName());
@@ -64,6 +70,9 @@ public class UserManager {
 		writer.close();
 	}
 
+	/*
+	This function is used to take the information from the csv file and load it to the HashMap of the application.
+	 */
 	public HashMap<UUID, User> getRegisteredUsers() throws IOException {
 		HashMap<UUID, User> registeredUSers = new HashMap<>();
 		String line = reader.readLine();

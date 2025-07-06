@@ -2,6 +2,12 @@ package com.rental.vehiclemanager;
 
 import com.rental.rentalmanager.Rentable;
 
+/*
+This is abstract parent class that defines the needed attributes for each Vehicle type that is used by the
+Car rental system.
+Counter based id is used (instead od UUID) to count all created vehicles,
+in order to ease the functionality of the system and make the use of the system user-friendly.
+ */
 public abstract class Vehicle implements Rentable {
 	private static int counter = 0;
 	private int id;
@@ -30,11 +36,14 @@ public abstract class Vehicle implements Rentable {
 		this.make = make;
 	}
 
-	public String getType(){
+	public String getType() {
 		return "Vehicle";
 	}
 
-	public String toFile(){
+	/*
+	This function generates String with coma separated information that is valid to write to a csv file.
+	*/
+	public String toFile() {
 		return String.join(",",
 				String.valueOf(this.getId()),
 				this.getMake(),

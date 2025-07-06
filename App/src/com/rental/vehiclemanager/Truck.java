@@ -1,6 +1,10 @@
 package com.rental.vehiclemanager;
 
-public class Truck extends Vehicle{
+/*
+This is a Vehicle subclass that creates the needed attributes of a Truck object.
+ */
+
+public class Truck extends Vehicle {
 	private int weight;
 
 	public Truck(String make, int weight) {
@@ -16,8 +20,11 @@ public class Truck extends Vehicle{
 		this.weight = weight;
 	}
 
-	public Truck fromFile(Truck truck, String[] data){
-		if(data.length != 4){
+	/*
+	This class gets a String from csv file and turns the information to a Truck class object.
+	*/
+	public Truck fromFile(Truck truck, String[] data) {
+		if (data.length != 4) {
 			System.out.println("Data size not correct!");
 		} else {
 			int id = Integer.parseInt(data[0]);
@@ -27,7 +34,7 @@ public class Truck extends Vehicle{
 			truck.setId(id);
 			truck.setMake(make);
 			truck.setWeight(weight);
-			if(isAvailable){
+			if (isAvailable) {
 				truck.makeAvailable();
 			} else {
 				truck.makeNotAvailable();
@@ -35,9 +42,12 @@ public class Truck extends Vehicle{
 		}
 		return truck;
 	}
-
+	/*
+	This function generates String with coma separated information that is valid to write to a csv file.
+	It overrides the parent class functionality to tailor it to the Truck class.
+	*/
 	@Override
-	public String toFile(){
+	public String toFile() {
 		return String.join(",",
 				String.valueOf(this.getId()),
 				this.getMake(),

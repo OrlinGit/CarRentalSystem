@@ -1,17 +1,14 @@
 import com.rental.rentalmanager.RentalManager;
 import com.rental.usermanager.User;
 import com.rental.usermanager.UserManager;
-import com.rental.vehiclemanager.Car;
-import com.rental.vehiclemanager.Truck;
 import com.rental.vehiclemanager.VehicleManager;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
+
 
 public class Main {
 	private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -30,39 +27,7 @@ public class Main {
 		while (isRunning) {
 			rentInterface(currentUser);
 		}
-
-
-
-		Car car1 = new Car("Mercedes", "C-klass", 2020);
-		Car car2 = new Car("Peugeot", "208", 2017);
-		Car car3 = new Car("Citroen", "C-5", 2005);
-		Car car4 = new Car("VW", "Passat", 2008);
-		Truck truck = new Truck("Man", 1000);
-		Truck truck2 = new Truck("Daf", 2000);
-		truck2.makeNotAvailable();
-		User user1 = new User("Adam", "pass1");
-		User user2 = new User("Eve", "pass2");
-		User user3 = new User("Peter", "pass3");
-		User user4 = new User("Mariya", "pass4");
-		UserManager users = new UserManager();
-		users.addUser(user1);
-		users.addUser(user2);
-		users.addUser(user3);
-		users.addUser(user4);
-		//users.printUsers();
-		users.writeToFile();
-		VehicleManager allVehicles = new VehicleManager();
-		allVehicles.addVehicle(car1);
-		allVehicles.addVehicle(car2);
-		allVehicles.addVehicle(car3);
-		allVehicles.addVehicle(car4);
-		allVehicles.addVehicle(truck);
-		allVehicles.addVehicle(truck2);
-		HashMap<UUID, User> allUsers = users.getRegisteredUsers();
-		allVehicles.printAllVehicles();
-		allVehicles.writeToFile();
 	}
-
 
 
 	public static void rentInterface(User user) throws IOException {

@@ -5,6 +5,9 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+This class is used to handle all functionalities that use the different vehicle classes.
+ */
 
 public class VehicleManager {
 	private final List<Vehicle> vehicles = new ArrayList<>();
@@ -19,7 +22,7 @@ public class VehicleManager {
 			throw new RuntimeException("File is not available to read!");
 		}
 		try {
-			writer = new BufferedWriter(new FileWriter(String.valueOf(pathToCars)));
+			writer = new BufferedWriter(new FileWriter(String.valueOf(pathToCars), true));
 		} catch (IOException e) {
 			throw new RuntimeException("File is not available to write!");
 		}
@@ -86,6 +89,10 @@ public class VehicleManager {
 			System.out.println(vehicles.get(i).toString());
 		}
 	}
+
+	/*
+	Prints only the available vehicles.
+	 */
 	public void printAvailable(){
 		for (int i = 0; i < vehicles.size(); i++) {
 			if (vehicles.get(i).isAvailable()) {
@@ -110,6 +117,10 @@ public class VehicleManager {
 		}
 	}
 
+	/*
+	Writes all the vehicles in the List<Vehicles> to the csv file.
+	It is used to write all vehicles in the list before closing the application.
+	 */
 	public void writeToFile() throws IOException {
 		for (int i = 0; i < vehicles.size() ; i++) {
 			writer.write(vehicles.get(i).toFile());
@@ -118,6 +129,9 @@ public class VehicleManager {
 		writer.close();
 	}
 
+	/*
+	Prints all vehicles in the file that are not in the List that is used by the application.
+	 */
 	public void printFromFile() throws IOException {
 		String line = reader.readLine();
 		while (line != null){

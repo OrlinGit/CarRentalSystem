@@ -5,7 +5,10 @@ import com.rental.vehiclemanager.Vehicle;
 
 import java.time.LocalDate;
 import java.util.UUID;
-
+/*
+The Rent class is created to hold the information about each rent action.
+This class makes the connection between each rented vehicle and the timeline.
+ */
 public class Rent {
 	private UUID id;
 	private Rentable vehicle;
@@ -58,6 +61,9 @@ public class Rent {
 		vehicle.makeAvailable();
 	}
 
+	/* This method turns the Rent instance into String where the information is separated by comas.
+	In this way the instance can be saved to csv file.
+	 */
 	public String toFile(){
 		return String.join(",", String.valueOf(this.id),
 				vehicle.toString(),
@@ -65,7 +71,10 @@ public class Rent {
 				String.valueOf(rentDate),
 				String.valueOf(returnDate));
 	}
-
+/*
+Makes the instance to String available for printing.
+It shows only information needed by the user.
+ */
 	@Override
 	public String toString() {
 		return ("Vehicle id: " + this.vehicle + " user: " + this.user.getName() + " start date: " + this.rentDate +
