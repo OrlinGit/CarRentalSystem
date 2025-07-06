@@ -16,6 +16,26 @@ public class Truck extends Vehicle{
 		this.weight = weight;
 	}
 
+	public Truck fromFile(Truck truck, String[] data){
+		if(data.length != 4){
+			System.out.println("Data size not correct!");
+		} else {
+			int id = Integer.parseInt(data[0]);
+			String make = data[1];
+			int weight = Integer.parseInt(data[3]);
+			boolean isAvailable = Boolean.parseBoolean(data[4]);
+			truck.setId(id);
+			truck.setMake(make);
+			truck.setWeight(weight);
+			if(isAvailable){
+				truck.makeAvailable();
+			} else {
+				truck.makeNotAvailable();
+			}
+		}
+		return truck;
+	}
+
 	@Override
 	public String toFile(){
 		return String.join(",",

@@ -28,8 +28,23 @@ public class UserManager {
 		}
 	}
 
-	public void addUser(User user){
+	public User registerUser(String username, String password){
+		User user = new User(username, password);
+		addUser(user);
+		return user;
+	}
+
+	public boolean addUser(User user){
 		users.put(user.getId(), user);
+		return true;
+	}
+
+	public User checkUser(String name, String password){
+		UUID idToCheck = UUID.nameUUIDFromBytes(String.join(",", name, password).getBytes());
+		if(users.containsKey(idToCheck)){
+			return new User(name, password);
+		}
+		return null;
 	}
 
 	public void printUsers(){

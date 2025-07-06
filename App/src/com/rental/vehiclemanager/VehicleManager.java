@@ -25,9 +25,26 @@ public class VehicleManager {
 		}
 	}
 
+	public static Car makeCar(String make, String model, int year) {
+		return new Car(make, model, year);
+	}
+
+	public static Truck makeTruck(String make, int weight){
+		return new Truck(make, weight);
+	}
 
 	public void addVehicle(Vehicle vehicle){
 		vehicles.add(vehicle);
+		System.out.println(vehicle.toString());
+	}
+
+	public Vehicle getVehicle(int id){
+		for (int i = 0; i < vehicles.size(); i++) {
+			if(vehicles.get(i).getId() == id){
+				return vehicles.get(i);
+			}
+		}
+		return null;
 	}
 
 	public Car editCar(Car carToModify, String make, String model, int year){
@@ -61,6 +78,7 @@ public class VehicleManager {
 
 	public void removeVehicle(int index){
 		vehicles.remove(index);
+		System.out.println(vehicles.get(index).toString());
 	}
 
 	public void printAllVehicles(){
@@ -100,4 +118,16 @@ public class VehicleManager {
 		writer.close();
 	}
 
+	public void printFromFile() throws IOException {
+		String line = reader.readLine();
+		while (line != null){
+			System.out.println(line);
+			line = reader.readLine();
+		}
+		reader.close();
+	}
+
+	public int size(){
+		return vehicles.size();
+	}
 }

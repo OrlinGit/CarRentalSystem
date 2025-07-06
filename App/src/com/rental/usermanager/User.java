@@ -8,7 +8,7 @@ public class User {
 	private String password;
 
 	public User(String name, String password) {
-		this.id = UUID.randomUUID();
+		this.id = UUID.nameUUIDFromBytes(String.join(",", name, password).getBytes());
 		this.name = name;
 		this.password = password;
 	}
